@@ -51,3 +51,14 @@ services:
     ports: ["8081:8080"]
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-listener:5432/listenerdb
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.15.0
+    container_name: logstash
+    ports:
+      - "5044:5044"      # <-- Java app sends here
+      - "9600:9600"
+    volumes:
+      - ./logstash-pipeline:/usr/share/logstash/pipeline:ro
+    depends_on:
+      - kafka
