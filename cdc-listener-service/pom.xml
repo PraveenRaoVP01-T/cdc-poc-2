@@ -97,6 +97,21 @@
 <!--            <artifactId>logback-encoder</artifactId>-->
 <!--            <version>1.2.0</version>-->
 <!--        </dependency>-->
+        <dependency>
+            <groupId>io.debezium</groupId>
+            <artifactId>debezium-api</artifactId>  <!-- Required for DebeziumEngine interface -->
+            <version>3.3.0.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>io.debezium</groupId>
+            <artifactId>debezium-embedded</artifactId>  <!-- Contains AsyncEmbeddedEngine impl -->
+            <version>3.3.0.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>io.debezium</groupId>
+            <artifactId>debezium-connector-postgres</artifactId>
+            <version>3.3.0.Final</version>
+        </dependency>
     </dependencies>
 
 	<build>

@@ -55,8 +55,8 @@ public class OrderEventConsumer {
             replicaRepo.upsert(replica.getId(),replica.getName(),replica.getAmount(), replica.getCreatedAt(),replica.getUpdatedAt());
             ack.acknowledge();
 
-            log.info("order.replicated id={} name={} amount={}",
-                    orderId, replica.getName(), replica.getAmount());
+//            log.info("order.replicated id={} name={} amount={}",
+//                    orderId, replica.getName(), replica.getAmount());
 
         } catch (JsonProcessingException e) {
             log.error("Error Processing JSON Content: {} - {}", e, payload);
