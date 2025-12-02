@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: cdc-producer
+  datasource:
+    url: jdbc:postgresql://postgres-producer:5432/producerdb
+    username: user
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  kafka:
+    bootstrap-servers: kafka:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+outbox:
+  poll-interval-ms: 200   # 200 ms → ~300–500 ms end-to-end lag

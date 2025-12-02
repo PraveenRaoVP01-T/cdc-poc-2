@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: cdc-listener
+  datasource:
+    url: jdbc:postgresql://postgres-listener:5432/listenerdb
+    username: user
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: update
+  kafka:
+    listener:
+      ack-mode: manual_immediate
+    bootstrap-servers: kafka:9092
+    consumer:
+      group-id: listener-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      enable-auto-commit: false
