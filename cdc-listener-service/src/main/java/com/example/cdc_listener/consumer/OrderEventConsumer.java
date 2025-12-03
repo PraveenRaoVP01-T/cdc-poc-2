@@ -51,6 +51,7 @@ public class OrderEventConsumer {
             replica.setCreatedAt(createdAt);
             Instant updatedAt = Instant.parse(json.get("updatedAt").asText());
             replica.setUpdatedAt(updatedAt);
+            replica.setUploaded(false);
 
             replicaRepo.upsert(replica.getId(),replica.getName(),replica.getAmount(), replica.getCreatedAt(),replica.getUpdatedAt());
             ack.acknowledge();

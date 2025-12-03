@@ -25,6 +25,8 @@ public class OrderReplica {
     private Instant createdAt;
     private Instant updatedAt;
 
+    private boolean isUploaded = false;
+
     public String getPayload() {
         return """
                 { "orderId": "%s", "name": "%s", "amount": "%s", "createdAt": "%s", "updatedAt": "%s"

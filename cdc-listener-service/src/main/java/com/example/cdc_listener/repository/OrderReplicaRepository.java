@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.UUID;
 
 @Repository
@@ -15,8 +16,8 @@ public interface OrderReplicaRepository extends JpaRepository<OrderReplica, UUID
 
     @Modifying
     @Query(value = """
-        INSERT INTO order_replica (id, name, amount, created_at, updated_at)
-        VALUES (:id, :name, :amount, :createdAt, :updatedAt)
+        INSERT INTO order_replica (id, name, amount, created_at, updated_at, is_uploaded)
+        VALUES (:id, :name, :amount, :createdAt, :updatedAt, false)
         ON CONFLICT (id) DO NOTHING
         """, nativeQuery = true)
     void upsert(
@@ -26,4 +27,7 @@ public interface OrderReplicaRepository extends JpaRepository<OrderReplica, UUID
             @Param("createdAt") Instant createdAt,
             @Param("updatedAt") Instant updatedAt
     );
+
+    @Query("SELECT o FROM OrderReplica o WHERE o.isUploaded = false")
+    List<OrderReplica> findByUploadedFalseOrderByUpdatedAt();
 }
